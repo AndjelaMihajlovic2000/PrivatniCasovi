@@ -1,0 +1,9 @@
+.panding-container{
+    padding: 20px 100px;
+}
+.prozor-za-cas{
+    background-color: rgb(152, 185, 196);
+    padding: 20px 40px;
+    width: 650px;
+    display: none;
+}
