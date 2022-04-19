@@ -1,3 +1,45 @@
+<?php
+
+    require "broker.php";
+    require "model/Nastavnik.php";
+
+    session_start();
+    if(isset($_POST["username"])&& isset($_POST["password"])){
+        
+        $user=$_POST["username"];
+        $pass=$_POST["password"];
+        $nast = new Nastavnik(1,$user,$pass);
+
+        $odg= Nastavnik::loginNastavnik($nast,$conn);
+        
+        if($odg->num_rows==1){
+            
+            //echo "postoji";
+            $row = $odg->fetch_row();
+            $_SESSION['nastavikId'] = $row[0];
+            header("Location: index.php");
+            exit();
+            
+
+        }
+        else{
+           // echo "ne postoji"; 
+           echo  "<script> alert('Pogresno korisničko ime ili lozinka') </script>";
+           header("Location: login.php");
+        }
+
+
+
+
+    }
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

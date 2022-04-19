@@ -1,3 +1,29 @@
+<?php
+ require "broker.php";
+ require "model/PrivatniCas.php";
+
+session_start();
+if(!isset($_SESSION['nastavnikId'])){
+    header("Location: login.php");
+    exit();
+}
+$svi= PrivatniCas:: prikaziSve($conn);
+
+if(!$svi){
+    echo "Doslo je do greške.";
+    exit();
+}
+
+if($svi->num_rows==0){
+    echo "Nema registrovanih časova.";
+    exit();
+}else{
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +68,30 @@
     </div>
 
 
+    <div class="padding-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"> Identifikacioni broj privatnog časa</th>
+                    <th scope="col"> Naziv časa</th>
+                    <th scope="col"> Kratak opis i dodatne informacije o času</th>
+                    <th scope="col"> Identifikacioni broj predavača</th>
+                </tr>
+            </thead>
+            <tbody class="telo">
+                
+
+
+            </tbody>
+
+        </table>
+
+
+
+
+    </div>
+
 
 </body>
 </html>
+<?php }?>
