@@ -3,7 +3,7 @@
 $('#novi-cas').click(function(e){
     e.preventDefault();
 
-    $(".prozor-kurs").toggleClass("hidden-kurs");
+    $(".prozor-cas").toggleClass("hidden-cas");
 });
 
 // obrada dodavanja novog kursa
@@ -13,20 +13,20 @@ $('#dodajNoviCas').submit(function(e)
     e.preventDefault();
     console.log("Dodavaje");
     const $form=$(this);
-    const $input=$form.find('input,textarea,buttn,select');
+    const $input=$form.find('input,textarea,button,select');
     const podaci = $form.serialize();
     $input.prop('disabled',true);
 
     let request = $.ajax({
-        ulr:'contoller/dodaj.php',
-        type:'POST',
-        data:podaci
+        ulr: 'contoller/dodaj.php',
+        type: 'POST',
+        data: podaci
     });
 
     request.done(function(response){
         if(response === 'Success'){
             alert("Novi čas je uspešno dodat.");
-            location.reload(ture);
+            location.reload(true);
         }
         else{
             console.log("Novi čas nije dodat."+response);
@@ -41,7 +41,7 @@ $('#dodajNoviCas').submit(function(e)
 $(".obrisi-cas-button").click(function(e){
     e.preventDefault();
     let kljuc=$(this).data('id');
-    let td= $("#"+kljuc).closest('tr');
+    let td = $("#" + kljuc).closest('tr');
 
     let request =$.ajax({
         url:'controller/izbrisi.php',
@@ -63,11 +63,11 @@ $(".obrisi-cas-button").click(function(e){
 });
 // prikazivanje forme za izmenu kursa
 
-$(".izmeni-cas-button").click(function(e){
-    $(".izmeni-cas").toggleClass("hidden-kurs");
+$(".izmeni-cas-button").click(function(){
+    $(".izmeni-cas").toggleClass("hidden-cas");
 
     let id = $(this).data('id');
-    let naziv =$("#"+id).children("td[data-target=naziv]").text();
+    let naziv =$("#" + id).children("td[data-target=naziv]").text();
     let opis = $("#" + id).children("td[data-target=opis]").text();
     let predavac = $("#" + id).children("td[data-target=predavac]").text();
 

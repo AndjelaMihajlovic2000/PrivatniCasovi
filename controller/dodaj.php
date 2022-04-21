@@ -1,7 +1,7 @@
 <?php
 
 require "../broker.php";
-require "../model/Kurs.php";
+require "../model/PrivatniCas.php";
 
 session_start();
 if(isset($_POST["naziv"]) && isset($_POST["opis"])){

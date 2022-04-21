@@ -1,7 +1,6 @@
 <?php 
 
 class Nastavnik{
-
     public $id;
     public $username;
     public $password;

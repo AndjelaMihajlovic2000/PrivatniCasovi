@@ -1,9 +1,36 @@
-.panding-container{
-    padding: 20px 100px;
-}
-.prozor-za-cas{
+.prozor-cas{
     background-color: rgb(152, 185, 196);
     padding: 20px 40px;
     width: 650px;
     display: none;
+}
+.padding-container {
+    padding: 30px 100px;
+}
+
+
+.hidden-cas {
+    display: block !important;
+}
+
+.prozor-cas input,
+.prozor-cas textarea {
+    margin-bottom: 20px;
+}
+
+.izmeni-cas {
+    background-color: rgb(234, 250, 255);
+    padding: 20px 40px;
+    width: 650px;
+    display: none;
+}
+
+.izmeni-cas input,
+.izmeni-cas textarea {
+    margin-bottom: 20px;
+}
+
+#search {
+    display: inline;
+    width: 100px;
 }

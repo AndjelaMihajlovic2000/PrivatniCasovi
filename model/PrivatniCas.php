@@ -36,7 +36,7 @@ class PrivatniCas{
         return $conn-> query($sql);
     }
     public static function dodaj($novicas,$conn){
-        $sql="INSERT INTO privatnicas (naziv,opis,predavac) VALUES ('$novicas->naziv','$novicas->opis','$novi->predavac')";
+        $sql="INSERT INTO privatnicas (naziv,opis,predavac) VALUES ('$novicas->naziv','$novicas->opis','$novicas->predavac')";
         return $conn->query($sql);
     }
 
