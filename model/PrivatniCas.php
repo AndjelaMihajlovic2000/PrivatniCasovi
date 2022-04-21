@@ -24,7 +24,7 @@ class PrivatniCas{
     public static function pronadjiID($id,$conn){
         $sql="SELECT * FROM privatnicas WHERE privatnicasID=$id";
         $myObj= array();
-        if($rez = $conn->qury($sql)){
+        if($rez = $conn->query($sql)){
             while($row= $rez->fetch_array(1)){
                 $myObj[]=$row;
             }

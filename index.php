@@ -1,9 +1,10 @@
 <?php
  require "broker.php";
  require "model/PrivatniCas.php";
-
+ require "model/Nastavnik.php";
 session_start();
-if(!isset($_SESSION['nastavnikId'])){
+
+if(!isset($_SESSION['nastavnikID'])){
     header("Location: login.php");
     exit();
 }
@@ -15,9 +16,10 @@ if(!$svi){
 }
 
 if($svi->num_rows == 0){
-    echo "Nema registrovanih časova.";
-    exit();
-}else{
+    
+    echo  "<script> alert('Nema registrovanih časova!') </script>";
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +48,7 @@ if($svi->num_rows == 0){
         </div>
     </div>
     <div class="prozor-cas">
-        <form action="#" method="POST" id="dodajNoviCas">
+        <form id="dodajNoviCas">
             <div class="form-group">
                 <label>Naziv časa</label>
                 <input name="naziv" type="text" class="form-control" placeholder="Unesite naziv časa...">
@@ -55,15 +57,15 @@ if($svi->num_rows == 0){
                 <label>Opis datog časa kao i dodatne informacije</label>
                 <input name="opis" type="text" class="form-control" placeholder="Unesite potrebne informacije...">
             </div>
-            <button id="btnDodajCas" formmethod="POST" type="submit" class="btn btn-primary">Dodaj novi</button>
+            <button id="btnDodajCas"  type="submit" class="btn btn-primary">Dodaj novi</button>
         </form>
     </div>
 
     <div class="izmeni-cas">
-        <form action="#" method="POST" id="izmeniCas">
+        <form id="izmeniCas">
             <div class="form-group">
                 <label>Identifikacioni broj časa</label>
-                <input type="id" id="id-input" disabled type="text" type="text" class="form-control" value="">
+                <input name="id" id="id-input" type="text" disabled class="form-control">
             </div>
             <div class="form-group">
                 <label>Naziv privatnog časa</label>
@@ -77,7 +79,7 @@ if($svi->num_rows == 0){
                 <label>Predavac</label>
                 <input name="predavac" id="predavac-input" displayed type="text" class="form-control">
             </div>
-            <button id="btnIzmeni" formmethod="POST" type="submit" class="btn btn-warning">Izmeni</button>
+            <button id="btnIzmeni" type="submit" class="btn btn-warning">Izmeni</button>
         </form>
     </div>
     <div class="padding-container">
@@ -99,7 +101,11 @@ if($svi->num_rows == 0){
                     <td scope="row"><?php echo $row["privatnicasID"]?></td>
                     <td data-target="naziv"><?php echo $row["naziv"]?></td>
                     <td data-target="opis"><?php echo $row["opis"]?></td>
-                    <td data-target="predavac"><?php echo $row["predavac"]?></td>
+                    <?php 
+                    $nastavnik = Nastavnik::pronadjiNastavnikaID($conn,$row["predavac"])->fetch_assoc();
+                    
+                    ?>
+                    <td data-target="predavac"><?=$nastavnik['username']?></td>
                     <td>
                         <a href="#" style="margin-right:10px;"class="btn btn-warning btn-sm izmeni-cas-button" data-id="<?php echo $row['privatnicasID']; ?>"><i class="fas fa-pen"></i></a>
                         <a href="#" class="btn btn-danger btn-sm obrisi-cas-button" data-id="<?php echo $row['privatnicasID']; ?>"><i class="fas fa-trash"></i></a>
@@ -108,7 +114,7 @@ if($svi->num_rows == 0){
                 <?php
                 
                     endwhile;
-                }
+                
                 ?>
                 
                 
@@ -121,3 +127,4 @@ if($svi->num_rows == 0){
 
 </body>
 </html>
+

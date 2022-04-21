@@ -4,28 +4,33 @@
     require "model/Nastavnik.php";
 
     session_start();
+    if(isset($_SESSION['nastavnikID'])){
+        header("Location: index.php");
+            exit();
+    }
+
     if(isset($_POST["username"])&& isset($_POST["password"])){
         
         $user=$_POST["username"];
         $pass=$_POST["password"];
-        $nast = new Nastavnik(1,$user,$pass);
+        $nast = new Nastavnik(null,$user,$pass);
 
-        $odg= Nastavnik::loginNastavnik($nast,$conn);
+        $odg= $nast->loginNastavnik($conn);
         
         if($odg->num_rows == 1){
-            
-            //echo "postoji";
+                        
             $row = $odg->fetch_row();
-            $_SESSION['nastavikId'] = $row[0];
+            $_SESSION['nastavnikID'] = $row[0];
+            
+            
             header("Location: index.php");
             exit();
             
 
         }
         else{
-           // echo "ne postoji"; 
+         //echo "ne postoji"; 
            echo  "<script> alert('Pogresno korisničko ime ili lozinka') </script>";
-           header("Location: login.php");
         }
 
 
@@ -60,7 +65,7 @@
         <h3>Molimo unesite Vaše korisničko ime i Vašu lozinku<h3>
     </div>
 
-    <form method="POST" action="">
+    <form method="POST" action="#">
         <div class="form-group">
             <label>Korisničko ime</label>
             <input type="text" name="username" class="form-control" placeholder="Korisničko ime" required>

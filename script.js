@@ -15,15 +15,18 @@ $('#dodajNoviCas').submit(function(e)
     const $form=$(this);
     const $input=$form.find('input,textarea,button,select');
     const podaci = $form.serialize();
+    console.log(podaci)
     $input.prop('disabled',true);
 
     let request = $.ajax({
-        ulr: 'contoller/dodaj.php',
+        url: 'controller/dodaj.php',
         type: 'POST',
         data: podaci
     });
 
     request.done(function(response){
+    
+
         if(response === 'Success'){
             alert("Novi čas je uspešno dodat.");
             location.reload(true);
@@ -71,6 +74,7 @@ $(".izmeni-cas-button").click(function(){
     let opis = $("#" + id).children("td[data-target=opis]").text();
     let predavac = $("#" + id).children("td[data-target=predavac]").text();
 
+    console.log(id);
     $("#id-input").val(id);
     $("#naziv-input").val(naziv);
     $("#opis-input").val(opis);
@@ -79,29 +83,39 @@ $(".izmeni-cas-button").click(function(){
 
 //update f-ja
 
-$("btnIzmeni").click(function(e){
+$("#izmeniCas").submit(function(e){
     e.preventDefault();
-    let id = $("#id-input").val();
-    let naziv = $("#naziv-input").val();
-    let opis = $("#opis-input").val();
-    let predavac = $("#predavac-input").val();
+    
+    const $form=$(this);
+    const $input=$form.find('input, textarea');
+    let podaci = $form.serialize();
+    let idPredmeta = $('#id-input').val();
+    console.log(idPredmeta)
+    podaci+=`&id=${idPredmeta}`;
+    console.log(podaci)
+
+
 
     let request = $.ajax({
         url: 'controller/izmeni.php',
         type: 'post',
-        data: {
-            id: id,
-            naziv: naziv,
-            opis: opis,
-            predavac: predavac
-        }
+        data: podaci
     });
-    request.done(function (response) {
-        if (response === 'Success') {
-            alert("Čas je izmenjen.");
+    request.done(function(response){
+        console.log(response);
+        if(response === 'Success'){
+            alert("Cas je izmenjen");
             location.reload(true);
         }
+        else{
+            alert("Cas nije izmenjen!");
+            console.log(response);
+        }
     });
+    request.fail(function(){
+        console.error("Desila se greska.");
+    });
+    
 
 });
 

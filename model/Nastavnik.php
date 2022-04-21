@@ -12,11 +12,21 @@ class Nastavnik{
         $this->password= $password;
     }
 
-    public static function loginNastavnik($nast,$conn){
-        $sql="SELECT * FROM nastavnik WHERE username='$nast->username' and password='$nast->password'";
-        return $conn->query($sql);
+    public function loginNastavnik($conn){
+        $sql="SELECT * FROM nastavnik WHERE username='$this->username' and password='$this->password'";
+        $result=$conn->query($sql);
+        
+        return $result;
     }
 
+    public static function pronadjiNastavnikaID($conn,$nastavnik_id){
+
+        $query = "SELECT * FROM nastavnik WHERE nastavnikId=$nastavnik_id";
+        $result = $conn->query($query);
+
+        return $result;
+
+    }
 
 
 
