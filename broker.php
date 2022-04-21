@@ -2,7 +2,8 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$db = "";
+$db = "dnevnikcasova";
+
 $conn = new mysqli($host,$user,$password,$db);
 
 if ($conn->connect_errno){

@@ -12,7 +12,7 @@
 
         $odg= Nastavnik::loginNastavnik($nast,$conn);
         
-        if($odg->num_rows==1){
+        if($odg->num_rows == 1){
             
             //echo "postoji";
             $row = $odg->fetch_row();

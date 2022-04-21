@@ -19,22 +19,30 @@ class PrivatniCas{
     public static function prikaziSveCasove($conn){
         $sql="SELECT * FROM privatnicas";
         return $conn->query($sql);
-
-
-
     }
 
+    public static function pronadjiID($id,$conn){
+        $sql="SELECT * FROM privatnicas WHERE privatnicasID=$id";
+        $myObj= array();
+        if($rez = $conn->qury($sql)){
+            while($row= $rez->fetch_array(1)){
+                $myObj[]=$row;
+            }
+        }
+        return $myObj;
+    }
+    public function izbrisiID($conn){
+        $sql="DELETE FROM privatnicas WHERE privatnicasID= $this->id ";
+        return $conn-> query($sql);
+    }
+    public static function dodaj($novicas,$conn){
+        $sql="INSERT INTO privatnicas (naziv,opis,predavac) VALUES ('$novicas->naziv','$novicas->opis','$novi->predavac')";
+        return $conn->query($sql);
+    }
+
+    
 
 
 
 }
-
-
-
-
-
-
-
-
-
 ?>
