@@ -1,11 +1,12 @@
 .prozor-cas{
-    background-color: rgb(152, 185, 196);
+    background-color: rgb(250, 152, 239);
     padding: 20px 40px;
     width: 650px;
     display: none;
 }
 .padding-container {
     padding: 30px 100px;
+    background-color: rgb(87, 30, 81);
 }
 
 

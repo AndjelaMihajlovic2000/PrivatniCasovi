@@ -45,6 +45,8 @@ if($svi->num_rows == 0){
             <button style="margin-right:20px; margin-bottom:30px; padding:0px; width:100px; height:40px" type="button" id="novi-cas" class="btn btn-success">Novi čas</button>
             <button style="margin-right:20px; margin-bottom:30px; padding:0px; width:40px; height:40px" type="button" class="btn btn-info" id="sortiraj"><i class="fas fa-sort"></i></button>
             <input style="margin-right:20px; width:200px; display:inline; margin-bottom:30px" type="text" class="form-control" id="search" placeholder="Pretražite časove...">
+            <a href="logout.php"> Izloguj se!</a>
+
         </div>
     </div>
     <div class="prozor-cas">
