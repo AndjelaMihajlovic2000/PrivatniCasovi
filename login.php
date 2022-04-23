@@ -2,13 +2,11 @@
 
     require "broker.php";
     require "model/Nastavnik.php";
-
     session_start();
     if(isset($_SESSION['nastavnikID'])){
         header("Location: index.php");
             exit();
     }
-
     if(isset($_POST["username"])&& isset($_POST["password"])){
         
         $user=$_POST["username"];
@@ -17,31 +15,17 @@
 
         $odg= $nast->loginNastavnik($conn);
         
-        if($odg->num_rows == 1){
-                        
+        if($odg->num_rows == 1){                   
             $row = $odg->fetch_row();
-            $_SESSION['nastavnikID'] = $row[0];
-            
-            
+            $_SESSION['nastavnikID'] = $row[0];       
             header("Location: index.php");
             exit();
-            
-
         }
         else{
          //echo "ne postoji"; 
            echo  "<script> alert('Pogresno korisničko ime ili lozinka') </script>";
         }
-
-
-
-
     }
-
-
-
-
-
 ?>
 
 

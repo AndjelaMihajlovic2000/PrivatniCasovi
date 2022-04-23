@@ -6,7 +6,6 @@ class Nastavnik{
     public $password;
 
     public function __construct($id=null, $username=null, $password=null){
-
         $this->id=$id;
         $this->username=$username;
         $this->password= $password;
@@ -14,8 +13,7 @@ class Nastavnik{
 
     public function loginNastavnik($conn){
         $sql="SELECT * FROM nastavnik WHERE username='$this->username' and password='$this->password'";
-        $result=$conn->query($sql);
-        
+        $result=$conn->query($sql);  
         return $result;
     }
 
@@ -23,17 +21,8 @@ class Nastavnik{
 
         $query = "SELECT * FROM nastavnik WHERE nastavnikId=$nastavnik_id";
         $result = $conn->query($query);
-
         return $result;
-
     }
-
-
-
-
-
-
-
 }
 
 
