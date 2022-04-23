@@ -91,7 +91,7 @@ if($svi->num_rows == 0){
                     <th scope="col"> Identifikacioni broj privatnog časa</th>
                     <th scope="col"> Naziv časa</th>
                     <th scope="col"> Kratak opis i dodatne informacije o času</th>
-                    <th scope="col"> Naziv predavač</th>
+                    <th scope="col"> Naziv predavača</th>
                     <th scope="col">Opcije</th>
                 </tr>
             </thead>
